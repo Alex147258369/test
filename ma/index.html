@@ -30,32 +30,30 @@ const baseUrl = 'https://alex147258369.github.io/test/';
 const baseUrll = 'https://photo-sphere-viewer-data.netlify.app/assets/';
 
 const viewer = new PhotoSphereViewer.Viewer({
-  container: 'viewer',
-  adapter: PhotoSphereViewer.CubemapTilesAdapter,
-  panorama: {
-    faceSize: 7168,
-    nbTiles: 4,
-    baseUrl: {
-      left: baseUrl + 'r.jpg',
-      front: baseUrl + 'b.jpg',
-      right: baseUrl + 'l.jpg',
-      back: baseUrl + 'f.jpg',
-      top: baseUrl + 'u.jpg',
-      bottom: baseUrl + 'd.jpg',
+    container: 'viewer',
+    adapter: PhotoSphereViewer.CubemapTilesAdapter,
+    panorama: {
+        faceSize: 7168,
+        nbTiles: 4,
+        baseUrl: {
+            left: baseUrl + 'r.jpg',
+            front: baseUrl + 'b.jpg',
+            right: baseUrl + 'l.jpg',
+            back: baseUrl + 'f.jpg',
+            top: baseUrl + 'u.jpg',
+            bottom: baseUrl + 'd.jpg',
+        },
+        tileUrl: (face, col, row) => {
+            const num = row * 4 + col;
+            return `${baseUrll}cubemap-tiles/${face}_${('00' + num).slice(-2)}.jpg`;
+        },
     },
-    tileUrl: (face, col, row) => {
-      //const num = row * 2 + col;
-      //return 'march2023_m_120/${face}_${num}.jpg';
-      const num = row * 4 + col;
-      return `${baseUrll}cubemap-tiles/${face}_${('00' + num).slice(-2)}.jpg`;
-    },
-  },
-  caption: 'Test',
-  loadingImg: baseUrl + 'loader.gif',
-  touchmoveTwoFingers: false,
-  mousewheelCtrlKey: false,
-  minFov: 5,
-  maxFov: 100,
+    caption: 'Parc national du Mercantour <b>&copy; Damien Sorel</b>',
+    loadingImg: baseUrll + 'loader.gif',
+    touchmoveTwoFingers: false,
+    mousewheelCtrlKey: false,
+});
+
 });
   </script>
 </body>
